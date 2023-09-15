@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Banner from './componentes/Banner';
+import Formulario from './componentes/Formulario';
+import Time from './componentes/Time';
 
 function App() {
+
+  const [colaboradores, setColaboradores] = useState([])
+
+  const aoSalvarForm = (item) => {
+    setColaboradores([...colaboradores, item])
+    console.log(colaboradores)
+  }
+
+  const times = [
+    { nome: "Programação", corPrimaria: "#57C278", corSecundaria: "#D9F7E9" },
+    { nome: "Front-End", corPrimaria: "#82CFFA", corSecundaria: "#E8F8FF" },
+    { nome: "Data Science", corPrimaria: "#A6D157", corSecundaria: "#F0F8E2" },
+    { nome: "Devops", corPrimaria: "#E06B69", corSecundaria: "#FDE7E8" },
+    { nome: "UX e Design", corPrimaria: "#DB6EBF", corSecundaria: "#FAE9F5" },
+    { nome: "Mobile", corPrimaria: "#FFBA05", corSecundaria: "#FFF5D9" },
+    { nome: "Inovação e Gestão", corPrimaria: "#FF8A29", corSecundaria: "#FFEEDF" }
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner />
+      <Formulario times={times.map(t => t.nome)} aoSalvar={item => aoSalvarForm(item)} />
+      <section>
+        {
+          times.map(time =>
+            <Time key={time.nome}
+              nome={time.nome} colaboradores={colaboradores.filter(item => item.time === time.nome)}
+              corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />)
+        }
+      </section>
     </div>
   );
 }
