@@ -4,6 +4,7 @@ import './Time.css'
 const Time = ({ nome, corPrimaria, corSecundaria, colaboradores }) => {
     const css = { background: corSecundaria }
     return (
+        //Renderização condicional
         (colaboradores.length > 0) &&
         <section className="time" style={css}>
             <h3 style={{ borderColor: corPrimaria }}>

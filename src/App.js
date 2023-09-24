@@ -2,14 +2,14 @@ import { useState } from 'react';
 import Banner from './componentes/Banner';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
+import Rodape from './componentes/Rodape';
 
 function App() {
 
   const [colaboradores, setColaboradores] = useState([])
 
-  const aoSalvarForm = (item) => {
+  const aoSalvarForm = (item) => {    
     setColaboradores([...colaboradores, item])
-    console.log(colaboradores)
   }
 
   const times = [
@@ -34,6 +34,7 @@ function App() {
               corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />)
         }
       </section>
+      <Rodape />
     </div>
   );
 }
